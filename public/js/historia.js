@@ -31,9 +31,10 @@ const diagnostico  = document.getElementById("diagnostico");
 const tratamiento  = document.getElementById("tratamiento");
 
 // ===============================
-// CARGAR HISTORIA CLÍNICA
+// CARGAR HISTORIA CLÍNICA (GET)
 // ===============================
-fetch(`${API_URL}/api/historia/${pacienteId}`)
+// ⚠️ RUTA CORRECTA: /api/historia-clinica/:paciente_id
+fetch(`${API_URL}/api/historia-clinica/${pacienteId}`)
     .then(res => {
         if (!res.ok) return null;
         return res.json();
@@ -60,7 +61,7 @@ fetch(`${API_URL}/api/historia/${pacienteId}`)
     });
 
 // ===============================
-// GUARDAR / ACTUALIZAR HISTORIA
+// GUARDAR / ACTUALIZAR HISTORIA (POST)
 // ===============================
 document.getElementById("formHistoria").addEventListener("submit", e => {
     e.preventDefault();
@@ -95,4 +96,3 @@ document.getElementById("formHistoria").addEventListener("submit", e => {
         alert("No se pudo guardar la historia clínica");
     });
 });
-
