@@ -1,4 +1,9 @@
 // ===============================
+// CONFIG API (RENDER)
+// ===============================
+const API_URL = "https://consultorio-backend-5y6e.onrender.com";
+
+// ===============================
 // UTILIDAD: FORMATEAR FECHA
 // ===============================
 function formatearFecha(fechaISO) {
@@ -12,6 +17,9 @@ function formatearFecha(fechaISO) {
   });
 }
 
+// ===============================
+// OBTENER PACIENTE ID
+// ===============================
 const pacienteId = localStorage.getItem("paciente_id");
 
 if (!pacienteId) {
@@ -20,15 +28,20 @@ if (!pacienteId) {
 }
 
 /* =========================
-   CARGAR NOTAS DESDE BD
+   CARGAR NOTAS DESDE BACKEND
 ========================= */
-fetch(`/api/notas/paciente/${pacienteId}`)
-    .then(res => res.json())
+fetch(`${API_URL}/api/notas/paciente/${pacienteId}`)
+    .then(res => {
+        if (!res.ok) {
+            throw new Error("Error al cargar notas médicas");
+        }
+        return res.json();
+    })
     .then(notas => {
         const tbody = document.getElementById("tablaNotas");
         tbody.innerHTML = "";
 
-        if (!notas || notas.length === 0) {
+        if (!Array.isArray(notas) || notas.length === 0) {
             tbody.innerHTML = `
                 <tr>
                     <td colspan="2" style="text-align:center">
@@ -41,7 +54,7 @@ fetch(`/api/notas/paciente/${pacienteId}`)
 
         notas.forEach((nota, index) => {
             tbody.innerHTML += `
-                <tr onclick="verNota(${nota.id})">
+                <tr onclick="verNota(${nota.id})" style="cursor:pointer">
                     <td>${index + 1}</td>
                     <td>${formatearFecha(nota.fecha)}</td>
                 </tr>
@@ -49,7 +62,8 @@ fetch(`/api/notas/paciente/${pacienteId}`)
         });
     })
     .catch(err => {
-        console.error("Error al cargar notas:", err);
+        console.error("❌ Error al cargar notas:", err);
+        alert("No se pudieron cargar las notas médicas");
     });
 
 /* =========================
