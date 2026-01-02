@@ -65,7 +65,7 @@ fetch(`${API_URL}/api/historia/${pacienteId}`)
 document.getElementById("formHistoria").addEventListener("submit", e => {
     e.preventDefault();
 
-    fetch(`${API_URL}/api/historia`, {
+    fetch(`${API_URL}/api/historia-clinica`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -95,3 +95,4 @@ document.getElementById("formHistoria").addEventListener("submit", e => {
         alert("No se pudo guardar la historia clínica");
     });
 });
+
