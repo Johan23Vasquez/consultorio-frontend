@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Paciente</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/nuevo_paciente.css">
+</head>
+<body>
+
+<div class="page">
+
+    <div class="form-card">
+        <div class="form-header">
+            <h2>Datos del Paciente</h2>
+            <button class="cancelar" onclick="window.location.href='index.html'">Cancelar</button>
+        </div>
+
+       <form id="formPaciente">
+
+    <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" id="nombre" required>
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            <label>Edad</label>
+            <input type="number" id="edad">
+        </div>
+
+        <div class="form-group">
+            <label>Sexo</label>
+            <input type="text" id="sexo">
+        </div>
+
+        <div class="form-group">
+            <label>Peso</label>
+            <input type="text" id="peso">
+        </div>
+
+        <div class="form-group">
+            <label>Altura</label>
+            <input type="text" id="altura">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Nombre del tutor o responsable</label>
+        <input type="text" id="tutor">
+    </div>
+
+    <div class="form-group">
+        <label>Número Telefónico</label>
+        <input type="tel" id="telefono">
+    </div>
+
+    <div class="form-group">
+        <label>Información adicional</label>
+        <textarea rows="4" id="info"></textarea>
+    </div>
+
+    <button class="btn">Guardar Paciente</button>
+</form>
+
+    </div>
+
+</div>
+
+<script src="js/nuevo_paciente.js"></script>
+</body>
+</html>

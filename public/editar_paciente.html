@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Paciente</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/nuevo_paciente.css">
+</head>
+<body>
+
+<div class="page">
+    <div class="form-card">
+
+        <div class="form-header">
+            <h2>Editar Paciente</h2>
+            <button class="cancelar" onclick="history.back()">Cancelar</button>
+        </div>
+
+        <button type="button"
+                class="btn editar"
+                onclick="activarEdicion()">
+            Editar datos
+        </button>
+
+        <form id="formPaciente">
+
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" id="nombre" disabled>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label>Edad</label>
+                    <input type="number" id="edad" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label>Sexo</label>
+                    <input type="text" id="sexo" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label>Peso</label>
+                    <input type="text" id="peso" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label>Altura</label>
+                    <input type="text" id="altura" disabled>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Nombre del tutor o responsable</label>
+                <input type="text" id="tutor" disabled>
+            </div>
+
+            <div class="form-group">
+                <label>Número Telefónico</label>
+                <input type="tel" id="telefono" disabled>
+            </div>
+
+            <div class="form-group">
+                <label>Información adicional</label>
+                <textarea rows="4" id="info" disabled></textarea>
+            </div>
+
+            <button type="submit" class="btn">
+                Guardar Cambios
+            </button>
+
+        </form>
+    </div>
+</div>
+
+<script src="js/editar_paciente.js"></script>
+</body>
+</html>

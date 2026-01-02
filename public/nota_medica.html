@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nota Médica</title>
+    <link rel="stylesheet" href="css/formularios.css">
+</head>
+<body>
+
+<div class="page">
+    <div class="form-card">
+
+        <!-- HEADER -->
+        <div class="form-header">
+            <h2>Nota Médica</h2>
+            <button class="cancelar" type="button" onclick="history.back()">Cancelar</button>
+        </div>
+
+        <!-- FORM -->
+        <form id="formNota" autocomplete="off">
+
+            <!-- DATOS GENERALES -->
+            <div class="row">
+                <div class="form-group">
+                    <label for="fecha">Fecha</label>
+                    <input type="date" id="fecha" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="edad">Edad</label>
+                    <input type="number" id="edad" min="0">
+                </div>
+            </div>
+
+            <h3>Signos Vitales</h3>
+            <div class="row">
+                <div class="form-group">
+                    <label for="rc">RC</label>
+                    <input type="text" id="rc">
+                </div>
+
+                <div class="form-group">
+                    <label for="rr">RR</label>
+                    <input type="text" id="rr">
+                </div>
+
+                <div class="form-group">
+                    <label for="temp">Temperatura</label>
+                    <input type="text" id="temp">
+                </div>
+
+                <div class="form-group">
+                    <label for="ta">TA</label>
+                    <input type="text" id="ta">
+                </div>
+
+                <div class="form-group">
+                    <label for="sat">Sat O₂</label>
+                    <input type="text" id="sat">
+                </div>
+            </div>
+
+            <!-- DATOS CLÍNICOS -->
+            <div class="form-group">
+                <label for="vacunas">Vacunas</label>
+                <input type="text" id="vacunas">
+            </div>
+
+            <div class="form-group">
+                <label for="alimentacion">Alimentación</label>
+                <input type="text" id="alimentacion">
+            </div>
+
+            <div class="form-group">
+                <label for="edi">EDI</label>
+                <input type="text" id="edi">
+            </div>
+
+            <!-- TEXTO CLÍNICO -->
+            <div class="form-group">
+                <label for="padecimiento">Padecimiento Actual</label>
+                <textarea id="padecimiento" rows="5" placeholder="Describe el padecimiento actual"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="diagnostico">Diagnóstico</label>
+                <textarea id="diagnostico" rows="3" placeholder="Diagnóstico médico"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="tratamiento">Tratamiento</label>
+                <textarea id="tratamiento" rows="3" placeholder="Tratamiento indicado"></textarea>
+            </div>
+
+            <button type="submit" class="btn">Guardar Nota Médica</button>
+
+        </form>
+
+    </div>
+</div>
+
+<script src="js/nota_medica.js"></script>
+</body>
+</html>

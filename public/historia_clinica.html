@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Historia Clínica</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/formularios.css">
+</head>
+<body>
+
+<div class="page">
+    <div class="form-card">
+
+        <div class="form-header">
+            <h2>Historia Clínica</h2>
+            <button class="cancelar" onclick="window.location.href='pacientes.html'">
+                Cancelar
+            </button>
+        </div>
+
+        <!-- Nombre del paciente (dinámico) -->
+        <p class="paciente-nombre">
+            Paciente: <strong id="nombrePaciente"></strong>
+        </p>
+
+        <form id="formHistoria">
+
+            <div class="form-group">
+                <label>Antecedentes Heredo-Familiares</label>
+                <textarea id="antecedentes_familiares" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Antecedentes Personales Patológicos</label>
+                <textarea id="antecedentes_patologicos" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Antecedentes Perinatales</label>
+                <textarea id="per" rows="3"></textarea>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label>A.G.O.</label>
+                    <input type="text" id="ago">
+                </div>
+
+                <div class="form-group">
+                    <label>P.A.</label>
+                    <input type="text" id="pa">
+                </div>
+
+                <div class="form-group">
+                    <label>E.F.</label>
+                    <input type="text" id="ef">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Signos Vitales</label>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label>FC</label>
+                        <input type="number" id="fc" placeholder="lpm">
+                    </div>
+
+                    <div class="form-group">
+                        <label>FR</label>
+                        <input type="number" id="fr" placeholder="rpm">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Temperatura</label>
+                        <input type="text" id="temperatura" placeholder="°C">
+                    </div>
+
+                    <div class="form-group">
+                        <label>TA</label>
+                        <input type="text" id="ta" placeholder="mmHg">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Sat O₂</label>
+                        <input type="number" id="sat_o2" placeholder="%">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Diagnóstico</label>
+                <textarea id="diagnostico" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Tratamiento</label>
+                <textarea id="tratamiento" rows="3"></textarea>
+            </div>
+
+            <button type="submit" class="btn guardar">
+    Guardar Historia Clínica
+</button>
+
+
+        </form>
+    </div>
+</div>
+
+<!-- SCRIPT -->
+<script src="js/historia.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pacientes Registrados</title>
+    <link rel="stylesheet" href="css/pacientes.css">
+</head>
+<body>
+
+<div class="page">
+    <div class="card">
+
+        <!-- HEADER -->
+        <div class="card-header">
+            <h2>Pacientes Registrados</h2>
+            <button class="cancelar" onclick="window.location.href='index.html'">Cancelar</button>
+        </div>
+
+        <!-- BUSCADOR -->
+        <div class="search-box">
+            <button class="search-btn" aria-label="Buscar">
+                <img src="imgs/search.png" class="search-icon" alt="Buscar">
+            </button>
+            <input type="text" placeholder="Buscar paciente...">
+        </div>
+
+        <!-- CONTENEDOR BLANCO DE DATOS -->
+        <div class="table-wrapper">
+            <table>
+                <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Tutor</th>
+        <th>Teléfono</th>   
+        <th>Acciones</th>
+    </tr>
+</thead>
+
+                
+                <tbody id="tablaPacientes">
+    <!-- Pacientes cargados por JS -->
+</tbody>
+
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<script src="js/pacientes.js"></script>
+
+</body>
+</html>

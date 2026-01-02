@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Historia Clínica</title>
+    <link rel="stylesheet" href="css/notas.css">
+</head>
+<body>
+
+<div class="page">
+    <div class="card">
+
+        <!-- HEADER -->
+        <div class="card-header">
+            <div>
+                <h2>Historia Clínica</h2>
+                <p class="paciente-nombre" id="nombrePaciente">Paciente</p>
+            </div>
+            <button class="cancelar" onclick="history.back()">Regresar</button>
+        </div>
+
+        <!-- ANTECEDENTES -->
+        <div class="section">
+            <h3>Antecedentes</h3>
+
+            <div class="item">
+                <label>Antecedentes Heredo-Familiares</label>
+                <p id="ahf"></p>
+            </div>
+
+            <div class="item">
+                <label>Antecedentes Personales Patológicos</label>
+                <p id="app"></p>
+            </div>
+
+            <div class="item">
+                <label>Antecedentes Perinatales</label>
+                <p id="perinatales"></p>
+            </div>
+        </div>
+
+        <!-- EXPLORACIÓN -->
+        <div class="section">
+            <h3>Exploración Física</h3>
+
+            <div class="grid">
+                <div class="item">
+                    <label>A.G.O.</label>
+                    <p id="ago"></p>
+                </div>
+
+                <div class="item">
+                    <label>P.A.</label>
+                    <p id="pa"></p>
+                </div>
+
+                <div class="item">
+                    <label>E.F.</label>
+                    <p id="ef"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SIGNOS VITALES -->
+        <div class="section">
+            <h3>Signos Vitales</h3>
+
+            <div class="grid">
+                <div class="item">
+                    <label>FC</label>
+                    <p id="fc"></p>
+                </div>
+
+                <div class="item">
+                    <label>FR</label>
+                    <p id="fr"></p>
+                </div>
+
+                <div class="item">
+                    <label>Temperatura</label>
+                    <p id="temp"></p>
+                </div>
+
+                <div class="item">
+                    <label>TA</label>
+                    <p id="ta"></p>
+                </div>
+
+                <div class="item">
+                    <label>Sat O₂</label>
+                    <p id="sat"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- DIAGNÓSTICO Y TRATAMIENTO -->
+        <div class="section">
+            <div class="item">
+                <label>Diagnóstico</label>
+                <p id="diagnostico"></p>
+            </div>
+
+            <div class="item">
+                <label>Tratamiento</label>
+                <p id="tratamiento"></p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+const pacienteId = localStorage.getItem("paciente_id");
+
+if (!pacienteId) {
+    alert("No se seleccionó paciente");
+    window.location.href = "pacientes.html";
+}
+
+/* =========================
+   CARGAR PACIENTE
+========================= */
+fetch(`/api/pacientes/${pacienteId}`)
+    .then(res => res.json())
+    .then(paciente => {
+        if (paciente) {
+            document.getElementById("nombrePaciente").innerText =
+                paciente.nombre;
+        }
+    });
+
+/* =========================
+   CARGAR HISTORIA CLÍNICA
+========================= */
+fetch(`/api/historia-clinica/${pacienteId}`)
+
+    .then(res => res.json())
+    .then(historia => {
+
+        if (!historia) {
+            alert("Este paciente aún no tiene historia clínica registrada");
+            return;
+        }
+
+        document.getElementById("ahf").innerText =
+            historia.antecedentes_familiares || "-";
+
+        document.getElementById("app").innerText =
+            historia.antecedentes_patologicos || "-";
+
+        document.getElementById("perinatales").innerText =
+            historia.per || "-";
+
+        document.getElementById("ago").innerText = historia.ago || "-";
+        document.getElementById("pa").innerText = historia.pa || "-";
+        document.getElementById("ef").innerText = historia.ef || "-";
+
+        document.getElementById("fc").innerText =
+            historia.fc ? historia.fc + " lpm" : "-";
+
+        document.getElementById("fr").innerText =
+            historia.fr ? historia.fr + " rpm" : "-";
+
+        document.getElementById("temp").innerText =
+            historia.temperatura ? historia.temperatura + " °C" : "-";
+
+        document.getElementById("ta").innerText = historia.ta || "-";
+
+        document.getElementById("sat").innerText =
+            historia.sat_o2 ? historia.sat_o2 + " %" : "-";
+
+        document.getElementById("diagnostico").innerText =
+            historia.diagnostico || "-";
+
+        document.getElementById("tratamiento").innerText =
+            historia.tratamiento || "-";
+    });
+</script>
+
+
+</body>
+</html>

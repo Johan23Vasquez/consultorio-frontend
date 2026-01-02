@@ -1,0 +1,199 @@
+* {
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(
+        rgba(0,0,0,0.55),
+        rgba(0,0,0,0.55)
+    ),
+    url("https://i.pinimg.com/1200x/e7/08/34/e70834540adf659cb25fe718091db6cf.jpg") center/cover;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page {
+    width: 100%;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+/* CARD */
+.form-card {
+    background: white;
+    width: 100%;
+    max-width: 1000px;
+    padding: 40px;
+    border-radius: 20px;
+    border: 2px solid #5a9cf0;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+/* HEADER */
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.form-header h2 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+/* BOTÓN CANCELAR */
+.cancelar {
+    padding: 6px 14px;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+
+    background: linear-gradient(135deg, #4facfe, #1e3cff);
+    color: white;
+
+    box-shadow: 0 8px 20px rgba(30, 60, 255, 0.35);
+    transition: all 0.3s ease;
+}
+
+.cancelar:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 12px 25px rgba(30, 60, 255, 0.45),
+        0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.cancelar:active {
+    transform: translateY(0);
+    box-shadow:
+        0 4px 10px rgba(30, 60, 255, 0.3);
+}
+
+/* NOMBRE PACIENTE */
+.paciente-nombre {
+    margin-bottom: 25px;
+    font-size: 1.05rem;
+    color: #333;
+}
+
+/* FORM */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+input,
+textarea {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #999;
+    font-size: 1rem;
+}
+
+textarea {
+    resize: none;
+}
+
+/* GRID */
+.row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+/* BOTÓN PRINCIPAL */
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px 22px;
+    border: none;
+    border-radius: 14px;
+
+    background: linear-gradient(135deg, #1e3cff, #4facfe);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: 
+        0 8px 20px rgba(30, 60, 255, 0.35),
+        0 2px 6px rgba(0, 0, 0, 0.15);
+
+    transition: all 0.3s ease;
+    margin: 30px auto 0;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 12px 25px rgba(30, 60, 255, 0.45),
+        0 4px 10px rgba(0, 0, 0, 0.2);
+
+    background: linear-gradient(135deg, #4facfe, #1e3cff);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow:
+        0 4px 10px rgba(30, 60, 255, 0.3);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .row {
+        grid-template-columns: 1fr;
+    }
+
+    .form-card {
+        padding: 25px;
+    }
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-contenido {
+  background: #fff;
+  padding: 20px;
+  width: 320px;
+  border-radius: 10px;
+}
+
+.modal-contenido input {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.acciones {
+  display: flex;
+  justify-content: space-between;
+}

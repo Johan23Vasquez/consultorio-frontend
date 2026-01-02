@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nota Médica</title>
+    <link rel="stylesheet" href="css/notas.css">
+</head>
+<body>
+
+<div class="page">
+    <div class="card">
+
+        <!-- HEADER -->
+        <div class="card-header">
+            <div>
+                <h2>Nota Médica</h2>
+                <p class="paciente-nombre" id="paciente_nombre"></p>
+            </div>
+            <button class="cancelar" onclick="history.back()">Regresar</button>
+        </div>
+
+        <button class="btn imprimir" onclick="abrirModalReceta()">
+            Imprimir receta
+        </button>
+
+        <!-- DATOS GENERALES -->
+        <div class="section">
+            <h3>Datos de la Consulta</h3>
+
+            <div class="grid">
+                <div class="item">
+                    <label>Fecha</label>
+                    <p id="fecha"></p>
+                </div>
+
+                <div class="item">
+                    <label>Edad</label>
+                    <p id="edad"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SIGNOS VITALES -->
+        <div class="section">
+            <h3>Signos Vitales</h3>
+
+            <div class="grid">
+                <div class="item">
+                    <label>RC</label>
+                    <p id="rc"></p>
+                </div>
+
+                <div class="item">
+                    <label>RR</label>
+                    <p id="rr"></p>
+                </div>
+
+                <div class="item">
+                    <label>T</label>
+                    <p id="temp"></p>
+                </div>
+
+                <div class="item">
+                    <label>TA</label>
+                    <p id="ta"></p>
+                </div>
+
+                <div class="item">
+                    <label>Sat O₂</label>
+                    <p id="sat"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CLÍNICA -->
+        <div class="section">
+            <div class="item">
+                <label>Padecimiento Actual</label>
+                <p id="padecimiento"></p>
+            </div>
+
+            <div class="item">
+                <label>Diagnóstico</label>
+                <p id="diagnostico"></p>
+            </div>
+
+            <div class="item">
+                <label>Tratamiento</label>
+                <p id="tratamiento"></p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- MODAL RECETA -->
+<div id="modalReceta" class="modal">
+    <div class="modal-contenido">
+        <h3>Datos para la receta</h3>
+
+        <label>Peso (kg)</label>
+        <input type="text" id="r_peso">
+
+        <label>Talla (cm)</label>
+        <input type="text" id="r_talla">
+
+        <label>Temperatura</label>
+        <input type="text" id="r_temp">
+
+        <label>FC</label>
+        <input type="text" id="r_fc">
+
+        <label>FR</label>
+        <input type="text" id="r_fr">
+
+        <label>Fecha de nacimiento</label>
+        <input type="date" id="r_nacimiento">
+
+
+
+        <div class="acciones">
+            <button onclick="cerrarModal()">Cancelar</button>
+            <button onclick="generarReceta()">Continuar</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/nota_mostrar.js"></script>
+</body>
+</html>

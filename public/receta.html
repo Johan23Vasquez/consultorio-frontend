@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Receta Médica</title>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  font-size: 11pt;
+}
+
+.receta {
+  width: 21.7cm;
+  height: 14cm;
+  position: relative;
+}
+
+.campo {
+  position: absolute;
+}
+
+/* CAMPOS SUPERIORES */
+.nombre { top: 3.9cm; left: 3.7cm; }
+.fecha  { top: 3.9cm; left: 17.7cm; }
+.edad   { top: 4.8cm; left: 3.0cm; }
+.peso   { top: 4.8cm; left: 6.6cm; }
+.talla  { top: 4.8cm; left: 10.4cm; }
+.temp   { top: 4.8cm; left: 14.3cm; }
+.fc     { top: 4.8cm; left: 17.3cm; }
+.fr     { top: 4.8cm; left: 20cm; }
+.fnac   { top: 5.6cm; left: 5.4cm; }
+
+/* CUERPO */
+.tratamiento {
+  top: 7.0cm;
+  left: 2.7cm;
+  width: 17.3cm;
+  line-height: 1.4;
+}
+
+
+
+@media print {
+  @page {
+    size: 21.7cm 14cm landscape; /* landscape = horizontal */
+    margin: 0;
+  }
+
+  body, .receta {
+    width: 21.7cm;
+    height: 14cm;
+    margin: 0;
+    padding: 0;
+  }
+
+  .receta {
+    position: relative;
+    font-family: Arial, sans-serif;
+    font-size: 11pt;
+  }
+
+  .campo {
+    position: absolute;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<div class="receta">
+  <div class="campo nombre"></div>
+  <div class="campo fecha"></div>
+  <div class="campo edad"></div>
+  <div class="campo peso"></div>
+  <div class="campo talla"></div>
+  <div class="campo temp"></div>
+  <div class="campo fc"></div>
+  <div class="campo fr"></div>
+  <div class="campo fnac"></div>
+  <div class="campo tratamiento"></div>
+</div>
+
+<script>
+window.onload = function() {
+  const receta = JSON.parse(localStorage.getItem("receta_print"));
+  if (!receta) {
+    alert("No hay datos de receta para imprimir");
+    return;
+  }
+
+  document.querySelector(".nombre").innerText = receta.nombre || "";
+  document.querySelector(".fecha").innerText = receta.fecha || "";
+  document.querySelector(".edad").innerText = receta.edad || "";
+  document.querySelector(".peso").innerText = receta.peso || "";
+  document.querySelector(".talla").innerText = receta.talla || "";
+  document.querySelector(".temp").innerText = receta.temp || "";
+  document.querySelector(".fc").innerText = receta.fc || "";
+  document.querySelector(".fr").innerText = receta.fr || "";
+  document.querySelector(".fnac").innerText = receta.nacimiento || "";
+  document.querySelector(".tratamiento").innerHTML =
+    (receta.tratamiento || "").replace(/\n/g, "<br>");
+
+  // Dar tiempo a renderizar antes de imprimir
+  setTimeout(() => window.print(), 500);
+};
+</script>
+
+</body>
+</html>

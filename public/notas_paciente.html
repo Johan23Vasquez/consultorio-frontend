@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Notas Médicas</title>
+    <link rel="stylesheet" href="css/notas.css">
+</head>
+<body>
+
+<div class="page">
+    <div class="card">
+
+        <!-- HEADER -->
+        <div class="card-header">
+            <div>
+                <h2>Registro de Notas Médicas</h2>
+                <p class="paciente-nombre" id="nombrePaciente"></p>
+
+            </div>
+
+            <button class="cancelar" onclick="history.back()">Cancelar</button>
+        </div>
+
+
+        
+        <!-- BOTONES DE ACCION -->
+<div class="acciones-top">
+    <button class="btn historia-clinica"
+        onclick="window.location.href='historia_mostrar.html'">
+        Historia Clínica
+    </button>
+
+    <button class="btn nueva-nota"
+        onclick="window.location.href='nota_medica.html'">
+        Nueva Nota
+    </button>
+</div>
+
+
+        <!-- TABLA -->
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+
+        <tbody id="tablaNotas">
+            <!-- Aquí se cargan las notas dinámicamente -->
+        </tbody>
+    </table>
+</div>
+
+
+    </div>
+</div>
+<script src="js/notas_paciente.js"></script>
+
+</body>
+</html>
