@@ -110,6 +110,14 @@
 </div>
 
 <script>
+// ===============================
+// CONFIG API (RENDER)
+// ===============================
+const API_URL = "https://consultorio-backend-5y6e.onrender.com";
+
+// ===============================
+// OBTENER PACIENTE ID
+// ===============================
 const pacienteId = localStorage.getItem("paciente_id");
 
 if (!pacienteId) {
@@ -120,21 +128,28 @@ if (!pacienteId) {
 /* =========================
    CARGAR PACIENTE
 ========================= */
-fetch(`/api/pacientes/${pacienteId}`)
-    .then(res => res.json())
+fetch(`${API_URL}/api/pacientes/${pacienteId}`)
+    .then(res => {
+        if (!res.ok) throw new Error("Paciente no encontrado");
+        return res.json();
+    })
     .then(paciente => {
-        if (paciente) {
-            document.getElementById("nombrePaciente").innerText =
-                paciente.nombre;
-        }
+        document.getElementById("nombrePaciente").innerText =
+            paciente.nombre || "Paciente";
+    })
+    .catch(err => {
+        console.error("❌ Error cargar paciente:", err);
+        document.getElementById("nombrePaciente").innerText = "Paciente";
     });
 
 /* =========================
    CARGAR HISTORIA CLÍNICA
 ========================= */
-fetch(`/api/historia-clinica/${pacienteId}`)
-
-    .then(res => res.json())
+fetch(`${API_URL}/api/historia-clinica/${pacienteId}`)
+    .then(res => {
+        if (!res.ok) throw new Error("Historia no encontrada");
+        return res.json();
+    })
     .then(historia => {
 
         if (!historia) {
@@ -152,8 +167,8 @@ fetch(`/api/historia-clinica/${pacienteId}`)
             historia.per || "-";
 
         document.getElementById("ago").innerText = historia.ago || "-";
-        document.getElementById("pa").innerText = historia.pa || "-";
-        document.getElementById("ef").innerText = historia.ef || "-";
+        document.getElementById("pa").innerText  = historia.pa || "-";
+        document.getElementById("ef").innerText  = historia.ef || "-";
 
         document.getElementById("fc").innerText =
             historia.fc ? historia.fc + " lpm" : "-";
@@ -174,6 +189,11 @@ fetch(`/api/historia-clinica/${pacienteId}`)
 
         document.getElementById("tratamiento").innerText =
             historia.tratamiento || "-";
+    })
+    .catch(err => {
+        console.error("❌ Error cargar historia clínica:", err);
+        alert("No se pudo cargar la historia clínica");
+        window.location.href = "pacientes.html";
     });
 </script>
 
