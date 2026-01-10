@@ -20,6 +20,7 @@ const form = document.getElementById("formNota");
 
 const fecha = document.getElementById("fecha");
 const edad  = document.getElementById("edad");
+const peso  = document.getElementById("peso");
 
 const rc   = document.getElementById("rc");
 const rr   = document.getElementById("rr");
@@ -27,12 +28,14 @@ const temp = document.getElementById("temp");
 const ta   = document.getElementById("ta");
 const sat  = document.getElementById("sat");
 
-const vacunas       = document.getElementById("vacunas");
-const alimentacion  = document.getElementById("alimentacion");
-const edi           = document.getElementById("edi");
-const padecimiento  = document.getElementById("padecimiento");
-const diagnostico   = document.getElementById("diagnostico");
-const tratamiento   = document.getElementById("tratamiento");
+const vacunas      = document.getElementById("vacunas");
+const alimentacion = document.getElementById("alimentacion");
+const edi          = document.getElementById("edi");
+
+const padecimiento = document.getElementById("padecimiento");
+const expfisica    = document.getElementById("expfisica");
+const diagnostico  = document.getElementById("diagnostico");
+const tratamiento  = document.getElementById("tratamiento");
 
 // ===============================
 // GUARDAR NOTA MÉDICA
@@ -43,7 +46,9 @@ form.addEventListener("submit", async (e) => {
     const nota = {
         paciente_id: pacienteId,
         fecha: fecha.value,
-        edad: edad.value || null,
+
+        edad: edad.value === "" ? null : Number(edad.value),
+        peso: peso.value === "" ? null : Number(peso.value),
 
         rc: rc.value || null,
         rr: rr.value || null,
@@ -55,9 +60,10 @@ form.addEventListener("submit", async (e) => {
         alimentacion: alimentacion.value || null,
         edi: edi.value || null,
 
-        padecimiento: padecimiento.value,
-        diagnostico: diagnostico.value,
-        tratamiento: tratamiento.value
+        padecimiento: padecimiento.value || "",
+        exploracion_fisica: expfisica.value || "",
+        diagnostico: diagnostico.value || "",
+        tratamiento: tratamiento.value || ""
     };
 
     try {
