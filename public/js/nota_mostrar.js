@@ -88,6 +88,13 @@ fetch(`${API_URL}/api/notas/paciente/${pacienteId}`)
     document.getElementById("edad").innerText =
       (nota.edad ?? "--") + " años";
 
+    document.getElementById("peso").innerText =
+  nota.peso ? nota.peso + " kg" : "--";
+
+document.getElementById("exploracion_fisica").innerText =
+  nota.exploracion_fisica ?? "--";
+
+
     document.getElementById("rc").innerText =
       (nota.rc ?? "--") + " lpm";
 
