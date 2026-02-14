@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
             mostrarTabla(pacientes);
         })
         .catch(err => {
-            console.error("❌ Error al cargar pacientes:", err);
+            console.error("Error al cargar pacientes:", err);
         });
 
     window.eliminarPaciente = async (idPaciente) => {
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!res.ok) throw new Error("Error al eliminar");
 
     alert("Paciente eliminado");
-    location.reload();
+    //location.reload();
 
   } catch (err) {
     console.error(err);
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             })
             .catch(err => {
-                console.error("❌ Error en búsqueda:", err);
+                console.error("Error en búsqueda:", err);
                 if (mostrarAlerta) {
                     alert("Error al buscar paciente");
                 }
