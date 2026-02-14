@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!res.ok) throw new Error("Error al eliminar");
 
     alert("Paciente eliminado");
-    //location.reload();
+    location.reload();
 
   } catch (err) {
     console.error(err);
