@@ -81,6 +81,31 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("❌ Error al cargar pacientes:", err);
         });
 
+    async function eliminarPaciente(idPaciente) {
+
+  const confirmar = confirm("¿Eliminar paciente?");
+
+  if (!confirmar) return;
+
+  try {
+
+    const res = await fetch(
+      `${API_URL}/api/pacientes/${idPaciente}`,
+      { method: "DELETE" }
+    );
+
+    if (!res.ok) throw new Error("Error al eliminar");
+
+    alert("Paciente eliminado");
+    location.reload();
+
+  } catch (err) {
+    console.error(err);
+    alert("No se pudo eliminar el paciente");
+  }
+}
+
+
     // ===============================
     // BUSCAR PACIENTES
     // ===============================
