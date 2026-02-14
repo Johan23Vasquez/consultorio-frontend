@@ -1,3 +1,5 @@
+console.log("nota_mostrar.js CARGADO");
+
 // ===============================
 // CONFIG API (RENDER)
 // ===============================
