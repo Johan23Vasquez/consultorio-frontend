@@ -87,7 +87,8 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("❌ Error al cargar pacientes:", err);
         });
 
-    async function eliminarPaciente(idPaciente) {
+    window.eliminarPaciente = async (idPaciente) => {
+
 
   const confirmar = confirm("¿Eliminar paciente?");
 
