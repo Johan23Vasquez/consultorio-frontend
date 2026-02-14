@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     </button>
 
     <button onclick="eliminarPaciente(${p.id})">
-        🗑
+        <img src="imgs/borrar.png">
     </button>
 </td>
 
