@@ -18,13 +18,26 @@ function formatearFecha(fechaISO) {
 }
 
 // ===============================
-// OBTENER PACIENTE ID
+// OBTENER PACIENTE ID (LOCALSTORAGE)
 // ===============================
 const pacienteId = localStorage.getItem("paciente_id");
 console.log("🟡 paciente_id:", pacienteId);
 
 if (!pacienteId) {
   alert("No se seleccionó paciente");
+  location.href = "pacientes.html";
+}
+
+// ===============================
+// OBTENER NOTA ID (URL PARAM)
+// ===============================
+const params = new URLSearchParams(window.location.search);
+const notaId = params.get("nota_id");
+
+console.log("🟡 nota_id URL:", notaId);
+
+if (!notaId) {
+  alert("No se seleccionó nota");
   location.href = "pacientes.html";
 }
 
@@ -57,24 +70,24 @@ fetch(`${API_URL}/api/pacientes/${pacienteId}`)
   });
 
 // ===============================
-// CARGAR NOTA DESDE BACKEND
+// CARGAR NOTA POR ID (CORREGIDO)
 // ===============================
-fetch(`${API_URL}/api/notas/paciente/${pacienteId}`)
+fetch(`${API_URL}/api/notas/id/${notaId}`)
   .then(res => {
     console.log("🟡 STATUS FETCH:", res.status);
-    if (!res.ok) throw new Error("No hay nota médica");
+    if (!res.ok) throw new Error("Nota no encontrada");
     return res.json();
   })
-  .then(notas => {
-    console.log("🟡 RESPUESTA BACKEND (notas):", notas);
+  .then(nota => {
 
-    if (!Array.isArray(notas) || notas.length === 0) {
-      alert("No hay nota médica registrada");
+    console.log("🟢 NOTA RECIBIDA:", nota);
+
+    if (!nota) {
+      alert("No existe la nota médica");
       location.href = "pacientes.html";
       return;
     }
 
-    const nota = notas[0];
     window._notaActual = nota;
 
     console.log("🟢 NOTA SELECCIONADA:", nota);
@@ -89,11 +102,10 @@ fetch(`${API_URL}/api/notas/paciente/${pacienteId}`)
       (nota.edad ?? "--") + " años";
 
     document.getElementById("peso").innerText =
-  nota.peso ? nota.peso + " kg" : "--";
+      nota.peso ? nota.peso + " kg" : "--";
 
-document.getElementById("exploracion_fisica").innerText =
-  nota.exploracion_fisica ?? "--";
-
+    document.getElementById("exploracion_fisica").innerText =
+      nota.exploracion_fisica ?? "--";
 
     document.getElementById("rc").innerText =
       (nota.rc ?? "--") + " lpm";
@@ -121,7 +133,7 @@ document.getElementById("exploracion_fisica").innerText =
   })
   .catch(err => {
     console.error("🔴 ERROR FETCH NOTA:", err);
-    alert("No hay nota médica registrada");
+    alert("No se pudo cargar la nota médica");
     location.href = "pacientes.html";
   });
 
