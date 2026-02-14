@@ -70,6 +70,6 @@ fetch(`${API_URL}/api/notas/paciente/${pacienteId}`)
    VER NOTA
 ========================= */
 function verNota(idNota) {
-    localStorage.setItem("nota_id", idNota);
-    window.location.href = "nota_mostrar.html";
+    window.location.href = `nota_mostrar.html?nota_id=${idNota}`;
 }
+
