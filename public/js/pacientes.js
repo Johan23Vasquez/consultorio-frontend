@@ -53,13 +53,19 @@ document.addEventListener("DOMContentLoaded", () => {
                     <td>${p.tutor || "—"}</td>
                     <td>${p.telefono || "—"}</td>
                     <td class="actions">
-                        <button onclick="editarPaciente(${p.id})">
-                            <img src="imgs/edit.png">
-                        </button>
-                        <button onclick="verHistoria(${p.id})">
-                            <img src="imgs/history1.png">
-                        </button>
-                    </td>
+    <button onclick="editarPaciente(${p.id})">
+        <img src="imgs/edit.png">
+    </button>
+
+    <button onclick="verHistoria(${p.id})">
+        <img src="imgs/history1.png">
+    </button>
+
+    <button onclick="eliminarPaciente(${p.id})">
+        🗑
+    </button>
+</td>
+
                 </tr>
             `;
         });
