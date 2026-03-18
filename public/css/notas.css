@@ -1,295 +1,381 @@
-* {
-    box-sizing: border-box;
-    font-family: "Segoe UI", Arial, sans-serif;
+/* ════════════════════════════════════════════
+   NOTAS MÉDICAS  —  notas.css
+   ════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+/* ── TOKENS ── */
+:root {
+  --teal:       #0d9488;
+  --teal-l:     #14b8a6;
+  --teal-dim:   rgba(13,148,136,.1);
+  --teal-glow:  rgba(13,148,136,.22);
+  --cream:      #f4efe6;
+  --white:      #ffffff;
+  --ink:        #0f1923;
+  --slate:      #2e4057;
+  --muted:      #6b8399;
+  --light:      #a8bfcc;
+  --border:     rgba(0,0,0,.08);
+  --border-m:   rgba(0,0,0,.13);
+  --amber:      #f59e0b;
+  --amber-dim:  rgba(245,158,11,.12);
+
+  --shadow-s:   0 2px 12px rgba(0,0,0,.08);
+  --shadow-m:   0 8px 32px rgba(0,0,0,.11);
+  --shadow-l:   0 20px 56px rgba(0,0,0,.15);
+
+  --r:    12px;
+  --r-lg: 20px;
 }
 
+/* ── RESET ── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
 body {
-    margin: 0;
-    min-height: 100vh;
-    background: linear-gradient(
-        rgba(0,0,0,0.55),
-        rgba(0,0,0,0.55)
-    ),
-    url("https://i.pinimg.com/1200x/e7/08/34/e70834540adf659cb25fe718091db6cf.jpg") center/cover;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
 }
+::-webkit-scrollbar { width:5px; }
+::-webkit-scrollbar-thumb { background:var(--teal-l); border-radius:3px; }
 
-/* CONTENEDOR GENERL */
-.page {
-    width: 100%;
-    padding: 40px;
-    display: flex;
-    justify-content: center;
-}
-
-/* TARJETA PRINCIPAL */
-.card {
-    background: rgba(255, 255, 255, 0.7);
-    width: 100%;
-    max-width: 1100px;
-    padding: 30px;
-    border-radius: 20px;
-    border: 2px solid #5a9cf0;
-}
-
-/* HEADER */
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.card-header h2 {
-    margin: 0;
-    font-size: 1.8rem;
-}
-
-/* NOMBRE DEL PACIENTE */
-.paciente-nombre {
-    margin: 4px 0 0;
-    font-weight: 600;
-    color: #1e3cff;
-}
-
-/* CANCELAR */
-.cancelar {
-    padding: 6px 14px;
-    border-radius: 14px;
-    border: none;
-    font-weight: 600;
-    color: white;
-    cursor: pointer;
-    background: linear-gradient(135deg, #4facfe, #1e3cff);
-    box-shadow: 0 6px 16px rgba(30,60,255,0.35);
-    transition: all 0.3s ease;
-}
-
-.cancelar:hover {
-    transform: translateY(-3px);
-    box-shadow:
-        0 12px 25px rgba(30, 60, 255, 0.45),
-        0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.cancelar:active {
-    transform: translateY(0);
-    box-shadow: 0 4px 10px rgba(30, 60, 255, 0.3);
-}
-
-
-.nueva-nota {
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    border-radius: 14px;
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
-    color: white;
-    background: linear-gradient(135deg, #1e3cff, #4facfe);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-    transition: all 0.3s ease;
-}
-
-.nueva-nota:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-}
-
-
-.table-wrapper {
-    background: white;
-    border-radius: 14px;
-    padding: 20px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
-}
-
-/* TABLA */
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-thead th {
-    text-align: left;
-    padding: 10px;
-    color: #333;
-    border-bottom: 2px solid #ccc;
-}
-
-tbody td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-tbody tr {
-    cursor: pointer;
-}
-
-tbody tr:hover {
-    background: #f4f7ff;
-}
-
-
-/* BOTONES SUPERIORES */
-.acciones-top {
-    display: flex;
-    gap: 14px;
-    margin-bottom: 20px;
-}
-
-/* BOTÓN HISTORIA CLÍNICA */
-.historia-clinica {
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    border-radius: 14px;
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
-    color: white;
-    background: linear-gradient(135deg, #1e3cff, #4facfe);
-    box-shadow: 0 6px 16px rgba(37, 28, 195, 0.3);
-    transition: all 0.3s ease;
-}
-
-.historia-clinica:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(37, 28, 195, 0.3);
-}
-
-.section {
-    background: #f9faff;
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 16px;
-}
-
-.section h3 {
-    margin-top: 0;
-    color: #1e3cff;
-}
-
-.info-nota {
-    margin-bottom: 20px;
-    font-weight: 600;
-}
-.item label {
-    font-weight: 600;
-    color: #333;
-    display: block;
-    margin-bottom: 4px;
-}
-
-.item p {
-    margin: 0 0 12px;
-    background: white;
-    padding: 10px;
-    border-radius: 10px;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 14px;
-}
-/* ===========================
-   BOTÓN IMPRIMIR
-=========================== */
-.btn.imprimir {
-  margin: 30px auto;
-  display: block;
-  padding: 12px 28px;
-  font-size: 15px;
-  background: #4caf50;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.btn.imprimir:hover {
-  background: #43a047;
-}
-
-/* ===========================
-   MODAL RECETA
-=========================== */
-.modal {
-  display: none; /* OCULTO POR DEFECTO */
+/* ── BACKGROUND BLOBS ── */
+.bg-blob {
   position: fixed;
-  z-index: 999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.45);
-  align-items: center;
-  justify-content: center;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+.bg-blob--1 {
+  width: 480px; height: 480px;
+  background: radial-gradient(circle, rgba(13,148,136,.11), transparent 68%);
+  top: -150px; right: -120px;
+}
+.bg-blob--2 {
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(13,148,136,.07), transparent 65%);
+  bottom: -80px; left: -70px;
 }
 
-/* CONTENEDOR */
-.modal-contenido {
-  background: #fff;
-  width: 420px;
-  max-width: 90%;
-  padding: 24px;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.25);
-  animation: aparecer .2s ease;
-}
-
-@keyframes aparecer {
-  from { transform: scale(.9); opacity: 0; }
-  to   { transform: scale(1); opacity: 1; }
-}
-
-/* TÍTULO */
-.modal-contenido h3 {
-  margin-top: 0;
-  margin-bottom: 16px;
-  text-align: center;
-}
-
-/* INPUTS */
-.modal-contenido label {
-  font-weight: 600;
-  margin-top: 10px;
-  display: block;
-}
-
-.modal-contenido input {
-  width: 100%;
-  padding: 8px 10px;
-  margin-top: 4px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-}
-
-/* BOTONES */
-.modal-contenido .acciones {
+/* ── PAGE ── */
+.page {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
   display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-top: 20px;
+  flex-direction: column;
+  padding-bottom: 2.5rem;
 }
 
-.modal-contenido button {
-  padding: 8px 18px;
-  border-radius: 6px;
+/* ── TOPBAR ── */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 2rem;
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(244,239,230,.88);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.topbar__logo {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  font-family: 'Fraunces', serif;
+  font-size: .98rem;
+  font-weight: 600;
+  color: var(--teal);
+}
+.topbar__mark {
+  width: 36px; height: 36px;
+  background: var(--teal);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 1.1rem;
+  box-shadow: 0 4px 14px var(--teal-glow);
+  flex-shrink: 0;
+}
+
+/* ── CANCELAR ── */
+.cancelar {
+  appearance: none;
+  border: 1.5px solid var(--border-m);
+  background: var(--white);
+  color: var(--slate);
+  font-family: 'DM Sans', sans-serif;
+  font-size: .82rem;
+  font-weight: 600;
+  padding: .45rem 1.05rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color .18s, color .18s, box-shadow .18s;
+  box-shadow: var(--shadow-s);
+}
+.cancelar:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+  box-shadow: 0 4px 16px var(--teal-glow);
+}
+
+/* ── CARD ── */
+.card {
+  margin: 1.6rem 2rem 0;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-m);
+  overflow: hidden;
+  animation: fadeUp .5s both;
+}
+
+/* ── CARD HEADER ── */
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.4rem 1.8rem 1.2rem;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(13,148,136,.04), transparent 60%);
+  gap: 1rem;
+}
+.card-header__left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.card-header__icon {
+  width: 46px; height: 46px;
+  border-radius: 13px;
+  background: var(--teal-dim);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.card-header h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -.02em;
+  margin-bottom: .15rem;
+}
+
+/* patient name */
+.paciente-nombre {
+  font-size: .83rem;
+  font-weight: 600;
+  color: var(--teal);
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+}
+
+/* note count badge */
+.card-header__count {
+  font-family: 'Fraunces', serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--teal);
+  opacity: .5;
+  flex-shrink: 0;
+}
+
+/* ── ACCIONES TOP ── */
+.acciones-top {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: 1rem 1.8rem;
+  border-bottom: 1px solid var(--border);
+  background: rgba(244,239,230,.4);
+}
+
+/* shared btn base */
+.btn {
+  appearance: none;
   border: none;
   cursor: pointer;
-  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .83rem;
+  font-weight: 600;
+  padding: .6rem 1.2rem;
+  border-radius: 9px;
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  transition: transform .18s, box-shadow .18s, opacity .15s;
+}
+.btn:active { transform: scale(.95); }
+.btn__icon {
+  font-size: 1rem;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
-.modal-contenido button:first-child {
-  background: #ccc;
+/* historia clínica — outlined teal */
+.btn.historia-clinica {
+  background: var(--white);
+  color: var(--teal);
+  border: 1.5px solid rgba(13,148,136,.35);
+  box-shadow: var(--shadow-s);
+}
+.btn.historia-clinica:hover {
+  background: var(--teal-dim);
+  border-color: var(--teal);
+  box-shadow: 0 4px 16px var(--teal-glow);
+  transform: translateY(-1px);
 }
 
-.modal-contenido button:last-child {
-  background: #4caf50;
+/* nueva nota — filled teal */
+.btn.nueva-nota {
+  background: var(--teal);
   color: #fff;
+  border: 1.5px solid transparent;
+  box-shadow: 0 4px 16px var(--teal-glow);
+}
+.btn.nueva-nota:hover {
+  background: var(--teal-l);
+  box-shadow: 0 6px 22px rgba(13,148,136,.35);
+  transform: translateY(-1px);
+}
+
+/* ── TABLE WRAPPER ── */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+/* ── TABLE ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+thead {
+  background: rgba(13,148,136,.05);
+}
+th {
+  padding: .8rem 1.6rem;
+  text-align: left;
+  font-size: .7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+td {
+  padding: .95rem 1.6rem;
+  font-size: .88rem;
+  color: var(--ink);
+  border-bottom: 1px solid rgba(0,0,0,.045);
+  transition: background .15s;
+  vertical-align: middle;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr {
+  animation: fadeUp .3s both;
+}
+tbody tr:nth-child(1)  { animation-delay: .04s; }
+tbody tr:nth-child(2)  { animation-delay: .08s; }
+tbody tr:nth-child(3)  { animation-delay: .12s; }
+tbody tr:nth-child(4)  { animation-delay: .16s; }
+tbody tr:nth-child(5)  { animation-delay: .20s; }
+tbody tr:hover td { background: rgba(13,148,136,.04); }
+
+/* row number pill */
+tbody tr td:first-child {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: .82rem;
+  color: var(--muted);
+}
+
+/* date cell */
+tbody tr td:nth-child(2) {
+  font-weight: 500;
+  color: var(--slate);
+}
+
+/* links inside table */
+td a {
+  color: var(--teal);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color .15s;
+}
+td a:hover {
+  color: var(--teal-l);
+  text-decoration: underline;
+}
+
+/* action buttons inside table */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+.actions button {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color .18s, background .18s, transform .15s;
+  box-shadow: var(--shadow-s);
+}
+.actions button img {
+  width: 14px; height: 14px;
+  object-fit: contain;
+  display: block;
+}
+.actions button:hover {
+  border-color: var(--teal);
+  background: var(--teal-dim);
+  transform: scale(1.08);
+}
+.actions button:active { transform: scale(.92); }
+
+/* ── EMPTY STATE ── */
+.empty-row td {
+  text-align: center;
+  padding: 3rem 1rem !important;
+  color: var(--muted);
+}
+.empty-row .empty-icon {
+  font-size: 2.2rem;
+  display: block;
+  margin-bottom: .7rem;
+  opacity: .45;
+}
+.empty-row .empty-title {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1rem;
+  display: block;
+  margin-bottom: .3rem;
+  color: var(--slate);
+}
+.empty-row .empty-sub {
+  font-size: .8rem;
+  color: var(--light);
+}
+
+/* ── ANIMATION ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  .card { margin: 1rem .8rem 0; border-radius: var(--r); }
+  .card-header { padding: 1.1rem 1.1rem 1rem; flex-wrap: wrap; }
+  .acciones-top { padding: .85rem 1.1rem; flex-wrap: wrap; }
+  .btn { font-size: .8rem; padding: .55rem 1rem; }
+  th, td { padding: .75rem .9rem; }
+  .topbar { padding: 1rem 1.2rem; }
+  .topbar__logo span { display: none; }
 }
