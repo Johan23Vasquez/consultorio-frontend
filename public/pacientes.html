@@ -3,51 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <title>Pacientes Registrados</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/pacientes.css">
 </head>
 <body>
 
-<div class="page">
-    <div class="card">
+    <!-- fondo decorativo -->
+    <div class="bg-blob bg-blob--1" aria-hidden="true"></div>
+    <div class="bg-blob bg-blob--2" aria-hidden="true"></div>
 
-        <!-- HEADER -->
-        <div class="card-header">
-            <h2>Pacientes Registrados</h2>
-            <button class="cancelar" onclick="window.location.href='index.html'">Cancelar</button>
-        </div>
+    <div class="page">
 
-        <!-- BUSCADOR -->
-        <div class="search-box">
-            <button class="search-btn" aria-label="Buscar">
-                <img src="imgs/search.png" class="search-icon" alt="Buscar">
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div class="topbar__logo">
+                <div class="topbar__mark">⚕</div>
+                <span>Consultorio Médico</span>
+            </div>
+            <button class="cancelar" onclick="window.location.href='index.html'">
+                ← Inicio
             </button>
-            <input type="text" placeholder="Buscar paciente...">
-        </div>
+        </header>
 
-        <!-- CONTENEDOR BLANCO DE DATOS -->
-        <div class="table-wrapper">
-            <table>
-                <thead>
-    <tr>
-        <th>Nombre</th>
-        <th>Tutor</th>
-        <th>Teléfono</th>   
-        <th>Acciones</th>
-    </tr>
-</thead>
+        <!-- MAIN CARD -->
+        <div class="card">
 
-                
-                <tbody id="tablaPacientes">
-    <!-- Pacientes cargados por JS -->
-</tbody>
+            <!-- CARD HEADER -->
+            <div class="card-header">
+                <div class="card-header__left">
+                    <h2>Pacientes Registrados</h2>
+                    <p class="card-header__sub" id="contadorPacientes">Cargando…</p>
+                </div>
+            </div>
 
-            </table>
-        </div>
+            <!-- BUSCADOR -->
+            <div class="search-box">
+                <button class="search-btn" aria-label="Buscar">
+                    <img src="imgs/search.png" class="search-icon" alt="Buscar">
+                </button>
+                <input type="text" placeholder="Buscar por nombre, tutor o teléfono…">
+            </div>
 
-    </div>
-</div>
+            <!-- TABLA -->
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Paciente</th>
+                            <th>Tutor</th>
+                            <th>Teléfono</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaPacientes">
+                        <!-- Pacientes cargados por JS -->
+                    </tbody>
+                </table>
+            </div>
+
+        </div><!-- /card -->
+    </div><!-- /page -->
 
 <script src="js/pacientes.js"></script>
-
+<script>
+    /* Actualizar contador cuando la tabla cambie */
+    (function(){
+        const observer = new MutationObserver(() => {
+            const filas = document.querySelectorAll('#tablaPacientes tr[data-id]');
+            const el    = document.getElementById('contadorPacientes');
+            if(el) el.textContent = filas.length
+                ? filas.length + (filas.length === 1 ? ' paciente' : ' pacientes')
+                : '';
+        });
+        const tbody = document.getElementById('tablaPacientes');
+        if(tbody) observer.observe(tbody, { childList: true, subtree: true });
+    })();
+</script>
 </body>
 </html>
