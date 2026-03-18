@@ -3,60 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <title>Registro de Notas Médicas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/notas.css">
 </head>
 <body>
 
-<div class="page">
-    <div class="card">
+    <div class="bg-blob bg-blob--1" aria-hidden="true"></div>
+    <div class="bg-blob bg-blob--2" aria-hidden="true"></div>
 
-        <!-- HEADER -->
-        <div class="card-header">
-            <div>
-                <h2>Registro de Notas Médicas</h2>
-                <p class="paciente-nombre" id="nombrePaciente"></p>
+    <div class="page">
 
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div class="topbar__logo">
+                <div class="topbar__mark">⚕</div>
+                <span>Consultorio Médico</span>
+            </div>
+            <button class="cancelar" onclick="history.back()">← Volver</button>
+        </header>
+
+        <!-- CARD -->
+        <div class="card">
+
+            <!-- CARD HEADER -->
+            <div class="card-header">
+                <div class="card-header__left">
+                    <div class="card-header__icon">📋</div>
+                    <div>
+                        <h2>Notas Médicas</h2>
+                        <p class="paciente-nombre" id="nombrePaciente">Cargando paciente…</p>
+                    </div>
+                </div>
+                <div class="card-header__count" id="contadorNotas"></div>
             </div>
 
-            <button class="cancelar" onclick="history.back()">Cancelar</button>
-        </div>
+            <!-- BOTONES DE ACCIÓN -->
+            <div class="acciones-top">
+                <button class="btn historia-clinica"
+                    onclick="window.location.href='historia_mostrar.html'">
+                    <span class="btn__icon">🩺</span>
+                    Historia Clínica
+                </button>
+                <button class="btn nueva-nota"
+                    onclick="window.location.href='nota_medica.html'">
+                    <span class="btn__icon">+</span>
+                    Nueva Nota
+                </button>
+            </div>
 
+            <!-- TABLA -->
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaNotas">
+                        <!-- Notas cargadas por JS -->
+                    </tbody>
+                </table>
+            </div>
 
-        
-        <!-- BOTONES DE ACCION -->
-<div class="acciones-top">
-    <button class="btn historia-clinica"
-        onclick="window.location.href='historia_mostrar.html'">
-        Historia Clínica
-    </button>
+        </div><!-- /card -->
+    </div><!-- /page -->
 
-    <button class="btn nueva-nota"
-        onclick="window.location.href='nota_medica.html'">
-        Nueva Nota
-    </button>
-</div>
-
-
-        <!-- TABLA -->
-<div class="table-wrapper">
-    <table>
-        <thead>
-            <tr>
-                <th>No.</th>
-                <th>Fecha</th>
-            </tr>
-        </thead>
-
-        <tbody id="tablaNotas">
-            <!-- Aquí se cargan las notas dinámicamente -->
-        </tbody>
-    </table>
-</div>
-
-
-    </div>
-</div>
 <script src="js/notas_paciente.js"></script>
-
+<script>
+    /* Contador dinámico de notas */
+    (function(){
+        const observer = new MutationObserver(() => {
+            const filas = document.querySelectorAll('#tablaNotas tr:not(.empty-row)');
+            const el    = document.getElementById('contadorNotas');
+            if(el && filas.length > 0)
+                el.textContent = filas.length + (filas.length === 1 ? ' nota' : ' notas');
+            else if(el) el.textContent = '';
+        });
+        const tbody = document.getElementById('tablaNotas');
+        if(tbody) observer.observe(tbody, { childList: true, subtree: true });
+    })();
+</script>
 </body>
 </html>
