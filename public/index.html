@@ -7,116 +7,28 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-
-    <!-- Decoraciones de fondo -->
-    <div class="bg-blob bg-blob--1" aria-hidden="true"></div>
-    <div class="bg-blob bg-blob--2" aria-hidden="true"></div>
-    <div class="bg-ring bg-ring--1" aria-hidden="true"></div>
-    <div class="bg-ring bg-ring--2" aria-hidden="true"></div>
-
-    <!-- TOPBAR -->
-    <header class="topbar">
-        <div class="topbar__logo">
-            <div class="topbar__mark">⚕</div>
-            <span>Consultorio Médico</span>
-        </div>
-        <div class="topbar__date" id="fecha"></div>
-    </header>
-
     <!-- HERO -->
     <section class="hero">
-        <div class="hero__pill">
-            <span class="hero__dot"></span>
-            Sistema activo
-        </div>
-        <h1 class="hero__title">
-            Bienvenida,<br>
-            <em>Dra. Hilda Aquino</em>
-        </h1>
-        <p class="hero__sub">
-            Gestiona tu consultorio de manera sencilla.<br>
-            ¿Qué deseas hacer hoy?
-        </p>
-
-        <!-- Lista de resultados (del script original) -->
-        <div id="listaPacientes"></div>
+        <h1>Bienvenida Dra. Hilda Aquino</h1>
+<!-- Lista de resultados -->
+<div id="listaPacientes"></div>
     </section>
-
     <!-- CONTENIDO -->
     <section class="content">
         <div class="actions">
             <button class="btn" onclick="window.location.href='nuevo_paciente.html'">
-                <div class="btn__icon-wrap">
-                    <img src="imgs/adduser.png" alt="Nuevo paciente">
-                </div>
-                <div class="btn__text">
-                    <span class="btn__label">Nuevo Paciente</span>
-                    <span class="btn__desc">Registrar expediente</span>
-                </div>
-                <span class="btn__arrow">→</span>
-            </button>
-
+    <img src="imgs/adduser.png" alt="Nuevo paciente">
+    <span>Nuevo Paciente</span>
+</button>
             <button class="btn" onclick="window.location.href='pacientes.html'">
-                <div class="btn__icon-wrap btn__icon-wrap--alt">
-                    <img src="imgs/history.png" alt="Historial">
-                </div>
-                <div class="btn__text">
-                    <span class="btn__label">Consultar Historial</span>
-                    <span class="btn__desc">Buscar expedientes</span>
-                </div>
-                <span class="btn__arrow">→</span>
-            </button>
+    <img src="imgs/history.png" alt="Historial">
+    <span>Consultar Historial</span>
+</button>
+</button>
         </div>
     </section>
-
-    <!-- FOOTER STATS -->
-    <footer class="stats-bar">
-        <div class="stats-bar__item">
-            <span class="stats-bar__n" id="statTotal">—</span>
-            <span class="stats-bar__l">Pacientes</span>
-        </div>
-        <div class="stats-bar__divider"></div>
-        <div class="stats-bar__item">
-            <span class="stats-bar__n">Gral.</span>
-            <span class="stats-bar__l">Especialidad</span>
-        </div>
-        <div class="stats-bar__divider"></div>
-        <div class="stats-bar__item">
-            <span class="stats-bar__n" id="statHoy">0</span>
-            <span class="stats-bar__l">Hoy</span>
-        </div>
-    </footer>
-
 <script src="js/index.js"></script>
-<script>
-    /* ── fecha dinámica ── */
-    (function(){
-        var dias   = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
-        var meses  = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
-        var d      = new Date();
-        var txt    = dias[d.getDay()] + ', ' + d.getDate() + ' ' + meses[d.getMonth()] + ' ' + d.getFullYear();
-        var el     = document.getElementById('fecha');
-        if(el) el.textContent = txt;
-    })();
-
-    /* ── stats desde localStorage (si el proyecto las guarda) ── */
-    (function(){
-        try {
-            var raw = localStorage.getItem('pacientes') ||
-                      localStorage.getItem('hilda_pacientes') || '[]';
-            var list = JSON.parse(raw);
-            var total = document.getElementById('statTotal');
-            var hoy   = document.getElementById('statHoy');
-            if(total) total.textContent = list.length;
-            if(hoy){
-                var hoyStr = new Date().toDateString();
-                var cnt = list.filter(function(p){
-                    return p.fecha && new Date(p.fecha).toDateString() === hoyStr;
-                }).length;
-                hoy.textContent = cnt;
-            }
-        } catch(e){}
-    })();
-</script>
 </body>
 </html>
+
+aplicalo a este
