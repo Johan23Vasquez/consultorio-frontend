@@ -3,120 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <title>Nota Médica</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/formularios.css">
 </head>
 <body>
 
-<div class="page">
-    <div class="form-card">
+    <div class="bg-blob bg-blob--1" aria-hidden="true"></div>
+    <div class="bg-blob bg-blob--2" aria-hidden="true"></div>
 
-        <!-- HEADER -->
-        <div class="form-header">
-            <h2>Nota Médica</h2>
-            <button class="cancelar" type="button" onclick="history.back()">Cancelar</button>
-        </div>
+    <div class="page">
 
-        <!-- FORM -->
-        <form id="formNota" autocomplete="off">
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div class="topbar__logo">
+                <div class="topbar__mark">⚕</div>
+                <span>Consultorio Médico</span>
+            </div>
+            <button class="cancelar" type="button" onclick="history.back()">← Cancelar</button>
+        </header>
 
-            <!-- DATOS GENERALES -->
-            <div class="row">
+        <!-- FORM CARD -->
+        <div class="form-card">
+
+            <!-- HEADER -->
+            <div class="form-header">
+                <div class="form-header__left">
+                    <div class="form-header__icon">📝</div>
+                    <div>
+                        <h2>Nota Médica</h2>
+                        <p class="form-header__sub">Registro de consulta clínica</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FORM -->
+            <form id="formNota" autocomplete="off">
+
+                <!-- DATOS GENERALES -->
+                <div class="form-section-title"><span>Datos generales</span></div>
+
+                <div class="row row--2">
+                    <div class="form-group">
+                        <label for="fecha">Fecha <span class="required">*</span></label>
+                        <input type="date" id="fecha" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edad">Edad</label>
+                        <input type="number" id="edad" step="0.01" min="0" placeholder="0">
+                    </div>
+                </div>
+
+                <!-- SIGNOS VITALES -->
+                <div class="form-section-title"><span>Signos Vitales</span></div>
+
+                <div class="vitals-grid">
+                    <div class="form-group">
+                        <label for="pc">PC</label>
+                        <input type="number" id="pc" step="0.1" min="0" placeholder="—">
+                    </div>
+                    <div class="form-group">
+                        <label for="rc">FC <span class="unit">lpm</span></label>
+                        <input type="text" id="rc" placeholder="—">
+                    </div>
+                    <div class="form-group">
+                        <label for="rr">FR <span class="unit">rpm</span></label>
+                        <input type="text" id="rr" placeholder="—">
+                    </div>
+                    <div class="form-group">
+                        <label for="temp">Temperatura <span class="unit">°C</span></label>
+                        <input type="text" id="temp" placeholder="36.5">
+                    </div>
+                    <div class="form-group">
+                        <label for="ta">TA <span class="unit">mmHg</span></label>
+                        <input type="text" id="ta" placeholder="120/80">
+                    </div>
+                    <div class="form-group">
+                        <label for="sat">Sat O₂ <span class="unit">%</span></label>
+                        <input type="text" id="sat" placeholder="98">
+                    </div>
+                </div>
+
+                <div class="form-group form-group--half">
+                    <label for="peso">Peso <span class="unit">kg</span></label>
+                    <input type="number" id="peso" step="0.01" min="0" placeholder="0.0">
+                </div>
+
+                <!-- DATOS CLÍNICOS -->
+                <div class="form-section-title"><span>Datos clínicos</span></div>
+
                 <div class="form-group">
-                    <label for="fecha">Fecha</label>
-                    <input type="date" id="fecha" required>
+                    <label for="vacunas">Vacunas</label>
+                    <input type="text" id="vacunas" placeholder="Esquema de vacunación">
                 </div>
+                <div class="form-group">
+                    <label for="alimentacion">Alimentación</label>
+                    <input type="text" id="alimentacion" placeholder="Tipo de alimentación actual">
+                </div>
+                <div class="form-group">
+                    <label for="edi">EDI</label>
+                    <input type="text" id="edi" placeholder="—">
+                </div>
+
+                <!-- TEXTO CLÍNICO -->
+                <div class="form-section-title"><span>Evaluación clínica</span></div>
 
                 <div class="form-group">
-                    <label for="edad">Edad</label>
-                    <input type="number" id="edad" step="0.01" min="0">
+                    <label for="padecimiento">Padecimiento Actual</label>
+                    <textarea id="padecimiento" rows="5"
+                        placeholder="Describe el padecimiento actual del paciente…"></textarea>
                 </div>
-            </div>
+                <div class="form-group">
+                    <label for="expfisica">Exploración Física</label>
+                    <textarea id="expfisica" rows="5"
+                        placeholder="Hallazgos de la exploración física…"></textarea>
+                </div>
 
-            <h3>Signos Vitales</h3>
-            <div class="row">
+                <div class="form-section-title"><span>Conclusión</span></div>
 
                 <div class="form-group">
-                    <label for="pc">PC</label>
-                    <input type="number" id="pc" step="0.1" min="0">
+                    <label for="diagnostico">Diagnóstico</label>
+                    <textarea id="diagnostico" rows="3"
+                        placeholder="Diagnóstico médico…"></textarea>
                 </div>
-                
                 <div class="form-group">
-                    <label for="rc">FC</label>
-                    <input type="text" id="rc">
+                    <label for="tratamiento">Tratamiento</label>
+                    <textarea id="tratamiento" rows="3"
+                        placeholder="Tratamiento indicado…"></textarea>
                 </div>
 
-                <div class="form-group">
-                    <label for="rr">FR</label>
-                    <input type="text" id="rr">
-                </div>
+                <button type="submit" class="btn">
+                    <span class="btn__icon">✓</span>
+                    Guardar Nota Médica
+                </button>
 
-                <div class="form-group">
-                    <label for="temp">Temperatura</label>
-                    <input type="text" id="temp">
-                </div>
-
-                <div class="form-group">
-                    <label for="ta">TA</label>
-                    <input type="text" id="ta">
-                </div>
-
-                <div class="form-group">
-                    <label for="sat">Sat O₂</label>
-                    <input type="text" id="sat">
-                </div>
-            </div>
-
-            <div class="form-group">
-                    <label for="peso">Peso (kg)</label>
-<input type="number" id="peso" step="0.01" min="0">
-
-                </div>
-
-            <!-- DATOS CLÍNICOS -->
-
-            
-            <div class="form-group">
-                <label for="vacunas">Vacunas</label>
-                <input type="text" id="vacunas">
-            </div>
-
-            <div class="form-group">
-                <label for="alimentacion">Alimentación</label>
-                <input type="text" id="alimentacion">
-            </div>
-
-            <div class="form-group">
-                <label for="edi">EDI</label>
-                <input type="text" id="edi">
-            </div>
-
-            <!-- TEXTO CLÍNICO -->
-            <div class="form-group">
-                <label for="padecimiento">Padecimiento Actual</label>
-                <textarea id="padecimiento" rows="5" placeholder="Describe el padecimiento actual"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="expfisica">Exploración Física</label>
-                <textarea id="expfisica" rows="5" placeholder=""></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="diagnostico">Diagnóstico</label>
-                <textarea id="diagnostico" rows="3" placeholder="Diagnóstico médico"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="tratamiento">Tratamiento</label>
-                <textarea id="tratamiento" rows="3" placeholder="Tratamiento indicado"></textarea>
-            </div>
-
-            <button type="submit" class="btn">Guardar Nota Médica</button>
-
-        </form>
-
-    </div>
-</div>
+            </form>
+        </div><!-- /form-card -->
+    </div><!-- /page -->
 
 <script src="js/nota_medica.js"></script>
 </body>
